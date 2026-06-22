@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg-gradient-start: #0f172a;
+  --bg-gradient-end: #1e293b;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --accent-color: #10b981;
+  --accent-hover: #059669;
+  --danger-color: #ef4444;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* App Header */
+.app-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.app-title {
+  font-size: 3rem;
+  background: linear-gradient(to right, #34d399, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.app-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Uploader */
+.uploader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  border: 2px dashed var(--glass-border);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.uploader-container:hover, .uploader-container.drag-active {
+  border-color: var(--accent-color);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.upload-icon {
+  width: 64px;
+  height: 64px;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.upload-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.upload-subtext {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Loading State */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--glass-border);
+  border-top-color: var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Results */
+.results-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.score-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.score-ring {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: conic-gradient(var(--score-color) var(--score-pct), var(--glass-bg) 0);
+  box-shadow: inset 0 0 0 10px var(--bg-gradient-start);
+}
+
+.score-ring::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 50%;
+  background: var(--bg-gradient-start);
+}
+
+.score-value {
+  position: relative;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--score-color);
+  z-index: 2;
+}
+
+.recommendation-card {
+  flex: 1;
+  min-width: 200px;
+  background: rgba(255,255,255,0.02);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+}
+
+.recommendation-card h3 {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.recommendation-card p {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.lists-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ingredient-category {
+  background: rgba(255,255,255,0.02);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid var(--glass-border);
+}
+
+.category-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.category-title.danger { color: #f87171; border-color: rgba(248, 113, 113, 0.2); }
+.category-title.success { color: #4ade80; border-color: rgba(74, 222, 128, 0.2); }
+.category-title.neutral { color: #94a3b8; }
+
+.ingredient-list {
+  list-style: none;
+}
+
+.ingredient-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.ingredient-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ingredient-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  display: inline-block;
+  text-transform: capitalize;
+}
+
+.ingredient-explanation {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.back-button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  margin-top: 2rem;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  background: var(--glass-bg);
+  border-color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+  #root {
+    padding: 1rem;
+  }
+  .app-title {
+    font-size: 2.2rem;
+  }
+  .score-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .score-ring {
+    margin: 0 auto;
+  }
+}

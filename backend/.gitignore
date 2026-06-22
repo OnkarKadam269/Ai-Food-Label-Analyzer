@@ -1,0 +1,11 @@
+# Python Backend
+venv/
+__pycache__/
+*.pyc
+.env
+
+# MacOS
+.DS_Store
+
+# Tesseract source (if it's still lying around)
+tesseract-ocr-tesseract-9c516f4/
